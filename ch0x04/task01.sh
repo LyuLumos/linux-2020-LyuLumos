@@ -40,7 +40,7 @@ function watermark {
     for i in *;do
         type=${i##*.}
         if [[ ${type} != "jpeg" && ${type} != "png" && ${type} != "svg" ]]; then continue; fi;
-        convert "${i}" -pointsize "$1" -fill black -gravity center -draw "text 10,10 '$2' " "${i}"
+        convert "${i}" -pointsize "$1" -fill black -gravity center -draw "text 10,10 '$2'" "${i}"
         echo "${i} is watermarked with $2."
     done
 }
@@ -89,6 +89,7 @@ case "$1" in
         ;;
     "-w")
         watermark "$2" "$3"
+        watermark2 "$2" "$3"
         exit 0
         ;;
     "-p")

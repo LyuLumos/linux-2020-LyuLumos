@@ -87,26 +87,6 @@ function maxAge {
         }' worldcupplayerinfo.tsv
 }
 
-function calc_extremum {
-        ages=$(awk -F "\t" '{if($6!="Age"){print $6}}' worldcupplayerinfo.tsv)
-
-        min=100
-        max=0
-
-        for i in $ages;do
-                if [[ $i -gt $max ]];then
-                        max=$i
-                fi
-                if [[ $i -lt $min ]];then
-                        min=$i
-                fi
-        done
-
-        awk -F "\t" 'BEGIN{printf "the oldest player:\n"}{if($6=="'"$max"'"){printf "%s: %d\n",$9,$6}}' worldcupplayerinfo.tsv
-        awk -F "\t" 'BEGIN{printf "the youngest player:\n"}{if($6=="'"$min"'"){printf "%s: %d\n",$9,$6}}' worldcupplayerinfo.tsv
-}
-
-
 
 while [ "$1" != "" ];do
     case "$1" in
@@ -124,7 +104,6 @@ while [ "$1" != "" ];do
             ;;
         "-a")
             maxAge
-            calc_extremum
             exit 0
             ;;
         "-h")
