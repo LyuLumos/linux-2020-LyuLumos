@@ -89,7 +89,6 @@ case "$1" in
         ;;
     "-w")
         watermark "$2" "$3"
-        watermark2 "$2" "$3"
         exit 0
         ;;
     "-p")
