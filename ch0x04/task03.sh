@@ -61,7 +61,7 @@ function stateCode4 {
 function specificURL {
     printf "%40s\t%s\n" "TOP100_host" "count"
     awk -F "\t" '
-    NR>1 {if("'$1'"==$5) {host[$1]++;} }
+    NR>1 {if("'"$1"'"==$5) {host[$1]++;} }
     END { for(i in host) {printf("%40s\t%d\n",i,host[i]);} }
     ' web_log.tsv | sort -g -k 2 -r | head -100
 }
