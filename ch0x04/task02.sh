@@ -12,8 +12,8 @@ function help {
 function countAge {
     awk -F "\t" '
         BEGIN {a=0; b=0; c=0;}
-        NR>1 {
-            if($6<20) {a++;}
+        $6!="Age" {
+            if($6>=0&&$6<20) {a++;}
             else if($6<=30) {b++;}
             else {c++;}
         }
@@ -30,7 +30,7 @@ function countAge {
 function countPosition {
     awk -F "\t" '
         BEGIN {sum=0}
-        NR>1 {
+        $5!="Position" {
             pos[$5]++;
             sum++;
         }
@@ -47,7 +47,7 @@ function countPosition {
 function maxName {
     awk -F "\t" '
         BEGIN {mx=-1; mi=1000;}
-        NR>1 {
+        $9!="Player" {
             len=length($9);
             names[$9]=len;
             mx=len>mx?len:mx;
@@ -87,6 +87,25 @@ function maxAge {
         }' worldcupplayerinfo.tsv
 }
 
+function calc_extremum {
+        ages=$(awk -F "\t" '{if($6!="Age"){print $6}}' worldcupplayerinfo.tsv)
+
+        min=100
+        max=0
+
+        for i in $ages;do
+                if [[ $i -gt $max ]];then
+                        max=$i
+                fi
+                if [[ $i -lt $min ]];then
+                        min=$i
+                fi
+        done
+
+        awk -F "\t" 'BEGIN{printf "the oldest player:\n"}{if($6=="'"$max"'"){printf "%s: %d\n",$9,$6}}' worldcupplayerinfo.tsv
+        awk -F "\t" 'BEGIN{printf "the youngest player:\n"}{if($6=="'"$min"'"){printf "%s: %d\n",$9,$6}}' worldcupplayerinfo.tsv
+}
+
 
 
 while [ "$1" != "" ];do
@@ -105,6 +124,7 @@ while [ "$1" != "" ];do
             ;;
         "-a")
             maxAge
+            calc_extremum
             exit 0
             ;;
         "-h")

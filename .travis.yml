@@ -32,7 +32,6 @@ script:
   - bash task03.sh -c
   - bash task03.sh -f
   - bash task03.sh -s /whats-new.html
-  - which shellcheck
   - shellcheck task01.sh
   - shellcheck task02.sh
   - shellcheck task03.sh
