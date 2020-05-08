@@ -13,7 +13,7 @@ script:
   - bash task01.sh -h
   - bash task01.sh -q 50
   - bash task01.sh -r 90%
-  - bash task01.sh -10 "CUC"
+  - bash task01.sh -w 10 "CUC"
   - bash task01.sh -p Pre
   - bash task01.sh -s Suf
   - bash task01.sh -t
@@ -32,7 +32,7 @@ script:
   - bash task03.sh -u
   - bash task03.sh -c
   - bash task03.sh -f
-  - bash task03.sh -s /
+  - bash task03.sh -s /whats-new.html
   - shellcheck task03.sh
 notifications:
   email:
