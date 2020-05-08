@@ -14,7 +14,7 @@ script:
   - cd ..
   - pwd
   - ls -l
-  = cd ch0x04
+  - cd ch0x04
   - bash task01.sh -h
   - bash task01.sh -q 50
   - bash task01.sh -r 90%
