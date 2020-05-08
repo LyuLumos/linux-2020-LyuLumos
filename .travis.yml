@@ -4,7 +4,6 @@ before_install:
   - sudo apt-get install -y shellcheck
   - sudo apt-get install imagemagick
   - sudo apt-get install p7zip-full
-  
 script:
   - cd ch0x04
   - wget "https://c4pr1c3.gitee.io/linuxsysadmin/exp/chap0x04/worldcupplayerinfo.tsv"
